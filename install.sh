@@ -68,3 +68,4 @@ else
   echo "  curl -fsSL https://alignment-hive.com/install.sh | bash"
   echo "If it fails at the binary download, run: bash ~/dotfiles/install.sh"
 fi
+[ -n "${REMOTE_CONTAINERS:-}" ] && bash "$(dirname "$0")/claude-container.sh"
