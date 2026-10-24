@@ -10,7 +10,7 @@ for d in "$HOME/.claude" "$HOME/.cache/hive" "$HOME/.alignment-hive"; do
   sudo mkdir -p "$d"
   sudo chown -R "$(id -u):$(id -g)" "$d"
 done
-
+sudo chown "$(id -u):$(id -g)" "$HOME/.cache"
 # Make ~/.local/bin (claude, hive) available in every terminal.
 grep -qF '.local/bin' "$HOME/.bashrc" 2>/dev/null \
   || echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
