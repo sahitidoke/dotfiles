@@ -14,14 +14,14 @@ Run this session in three phases. Do not skip or merge them.
 3. Interview me **one question at a time** until you understand every implicit requirement: the goal behind the task, what "done" looks like, what to vary and what to hold fixed, how to judge success, the compute or time budget, and what must not be touched. Skip anything retrieval or the repo already answered, and say what you inferred so I can correct it.
 4. Write the spec to `.research/<short-task-name>/spec.md`: goal, requirements, success criteria, plan, and the decisions I fixed. Show it to me.
 5. Spawn `model-router:plan-reviewer` on that file, passing the goal and the decisions I fixed. Revise the plan for any finding you agree with, and list the ones you rejected and why. If model-router isn't available, spawn a fresh general-purpose subagent to critique the plan instead.
-6. Ask me to confirm the spec. Remind me that this is the point to raise reasoning effort and switch to auto mode. **Do not start Phase 2 until I confirm.**
+6. Ask me to confirm the spec. Remind me that this is the point to switch to auto mode and pick **ultracode** in the effort menu (xhigh effort, lets you launch workflows). **Do not start Phase 2 until I confirm.**
 
 ## Phase 2: Execute (I have walked away)
 
 - Work autonomously. Time spent does not matter; only the quality of the result does. Do not stop to ask me questions. When something is ambiguous, take the reading most consistent with the spec, record it in `.research/<task>/decisions.md` with your reasoning, and carry on.
 - Before anything expensive or hard to undo (long runs, GPU jobs, large refactors), write down what you are about to do and why, and if it changes the approved plan, get `model-router:plan-reviewer` to check the change first.
 - Commit work in small, described steps so any of it can be reverted.
-- For a range of experiments or variants, use subagents to run them in parallel rather than one by one.
+- For a range of experiments, prompt variants or eval iterations, create a workflow to run them in parallel rather than one by one. Each branch gets its own subagent; collect and compare their results yourself before drawing conclusions.
 - Check your own results: rerun anything surprising, look for bugs that would produce the same numbers, and do not draw conclusions from one data point.
 - When the code is done, run `model-router:adversarial-code-reviewer` on the changes (scope: everything since the commit where Phase 2 started). Fix what you agree with; record what you rejected in `decisions.md`.
 
